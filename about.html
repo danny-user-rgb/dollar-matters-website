@@ -14,41 +14,73 @@
   <header class="site-header" id="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo">
-        <img src="images/logo.svg" alt="Dollar Matters" class="logo-img" />
+        <img src="images/logo-dollar-matters.png" alt="Dollar Matters" class="logo-img" />
       </a>
       <nav class="main-nav" id="main-nav">
         <ul class="nav-list">
           <li class="nav-item has-dropdown">
             <button class="nav-link">What We Do <span class="caret">&#8964;</span></button>
-            <div class="dropdown"><div class="dropdown-inner">
-              <a href="programs.html">Our Programs</a>
-              <a href="topics.html">Financial Topics We Teach</a>
-              <a href="volunteer.html">Volunteer with Us</a>
-              <a href="impact.html">Our Impact</a>
+            <div class="dropdown"><div class="dropdown-mega">
+              <div class="dropdown-links-col">
+                <a href="programs.html">Our Programs</a>
+                <a href="topics.html">Financial Topics We Teach</a>
+                <a href="volunteer.html">Volunteer with Us</a>
+                <a href="impact.html">Our Impact</a>
+              </div>
+              <div class="dropdown-feature">
+                <p class="dropdown-feature-label">Get Involved</p>
+                <h3 class="dropdown-feature-title">Empowering the next generation</h3>
+                <p class="dropdown-feature-desc">From high school workshops to community sessions, Dollar Matters brings peer-led financial education where it's needed most.</p>
+                <a href="volunteer.html" class="dropdown-feature-link">Volunteer today &rarr;</a>
+              </div>
             </div></div>
           </li>
           <li class="nav-item has-dropdown">
             <button class="nav-link">Financial Library <span class="caret">&#8964;</span></button>
-            <div class="dropdown"><div class="dropdown-inner">
-              <a href="glossary.html">Finance Glossary A–Z</a>
-              <a href="topics.html">Topic Guides</a>
-              <a href="resources.html">Tools &amp; Calculators</a>
+            <div class="dropdown"><div class="dropdown-mega">
+              <div class="dropdown-links-col">
+                <a href="glossary.html">Finance Glossary A&ndash;Z</a>
+                <a href="topics.html">Topic Guides</a>
+                <a href="resources.html">Tools &amp; Calculators</a>
+              </div>
+              <div class="dropdown-feature">
+                <p class="dropdown-feature-label">Free Resources</p>
+                <h3 class="dropdown-feature-title">Your financial knowledge hub</h3>
+                <p class="dropdown-feature-desc">Access our growing library of guides, glossaries, and tools — all free, all designed for real-world use.</p>
+                <a href="glossary.html" class="dropdown-feature-link">Browse the glossary &rarr;</a>
+              </div>
             </div></div>
           </li>
           <li class="nav-item has-dropdown">
             <button class="nav-link">For Schools &amp; Partners <span class="caret">&#8964;</span></button>
-            <div class="dropdown"><div class="dropdown-inner">
-              <a href="schools.html">Bring Us to Your School</a>
-              <a href="community.html">Community Centers</a>
-              <a href="partners.html">Partner With Us</a>
+            <div class="dropdown"><div class="dropdown-mega">
+              <div class="dropdown-links-col">
+                <a href="schools.html">Bring Us to Your School</a>
+                <a href="community.html">Community Centers</a>
+                <a href="partners.html">Partner With Us</a>
+              </div>
+              <div class="dropdown-feature">
+                <p class="dropdown-feature-label">Partner With Us</p>
+                <h3 class="dropdown-feature-title">We come to you &mdash; free &amp; fully prepared</h3>
+                <p class="dropdown-feature-desc">Our trained volunteers bring workshops directly to your school or community center at no cost to you.</p>
+                <a href="schools.html" class="dropdown-feature-link">Request a workshop &rarr;</a>
+              </div>
             </div></div>
           </li>
           <li class="nav-item has-dropdown">
             <button class="nav-link">About <span class="caret">&#8964;</span></button>
-            <div class="dropdown"><div class="dropdown-inner">
-              <a href="about.html">About Dollar Matters</a>
-              <a href="team.html">Our Team</a>
-              <a href="contact.html">Contact Us</a>
+            <div class="dropdown"><div class="dropdown-mega">
+              <div class="dropdown-links-col">
+                <a href="about.html">About Dollar Matters</a>
+                <a href="team.html">Our Team</a>
+                <a href="contact.html">Contact Us</a>
+              </div>
+              <div class="dropdown-feature">
+                <p class="dropdown-feature-label">Our Story</p>
+                <h3 class="dropdown-feature-title">Student-led, community-driven</h3>
+                <p class="dropdown-feature-desc">Dollar Matters was founded by college students who believe financial literacy is a right, not a privilege. Learn what drives us.</p>
+                <a href="about.html" class="dropdown-feature-link">Our story &rarr;</a>
+              </div>
             </div></div>
           </li>
         </ul>
@@ -63,8 +95,18 @@
     </div>
     <div class="search-overlay" id="search-overlay">
       <div class="search-overlay-inner">
-        <input type="text" class="search-overlay-input" placeholder="Search financial terms, topics…" id="search-overlay-input" />
-        <button class="search-overlay-close" id="search-overlay-close">✕</button>
+        <a href="index.html" class="search-overlay-logo">
+          <img src="images/logo-dollar-matters.png" alt="Dollar Matters" class="logo-img" />
+        </a>
+        <div class="search-input-wrap">
+          <svg class="search-input-icon-left" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="search-overlay-input" placeholder="Search by keyword or phrase" id="search-overlay-input" />
+          <button class="search-clear-btn" id="search-clear-btn" aria-label="Clear search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <button class="search-submit-btn">Search</button>
+        <button class="search-overlay-close" id="search-overlay-close" aria-label="Close search">&#10005;</button>
       </div>
     </div>
   </header>

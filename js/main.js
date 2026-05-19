@@ -111,6 +111,7 @@ const searchBtn = document.getElementById('search-btn');
 const searchOverlay = document.getElementById('search-overlay');
 const searchOverlayClose = document.getElementById('search-overlay-close');
 const searchOverlayInput = document.getElementById('search-overlay-input');
+const searchClearBtn = document.getElementById('search-clear-btn');
 
 if (searchBtn) {
   searchBtn.addEventListener('click', () => {
@@ -119,7 +120,21 @@ if (searchBtn) {
   });
 }
 if (searchOverlayClose) {
-  searchOverlayClose.addEventListener('click', () => searchOverlay.classList.remove('active'));
+  searchOverlayClose.addEventListener('click', () => {
+    searchOverlay.classList.remove('active');
+    if (searchOverlayInput) searchOverlayInput.value = '';
+    if (searchClearBtn) searchClearBtn.classList.remove('visible');
+  });
+}
+if (searchOverlayInput && searchClearBtn) {
+  searchOverlayInput.addEventListener('input', function () {
+    searchClearBtn.classList.toggle('visible', this.value.length > 0);
+  });
+  searchClearBtn.addEventListener('click', function () {
+    searchOverlayInput.value = '';
+    searchClearBtn.classList.remove('visible');
+    searchOverlayInput.focus();
+  });
 }
 
 // ---- Mobile hamburger ----
