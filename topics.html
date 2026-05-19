@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Topics | Dollar Matters</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    .topic-section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .topic-section:last-child { border-bottom: none; }
+    .topic-section-inner {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .topic-sidebar { position: sticky; top: calc(var(--header-h) + 24px); }
+    .topic-sidebar-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--sky-light);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .topic-sidebar h2 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .topic-sidebar .topic-tag {
+      display: inline-block;
+      background: var(--sky);
+      color: var(--navy-mid);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .topic-body h3 { font-size: 1rem; font-weight: 700; color: var(--black); margin: 24px 0 8px; }
+    .topic-body p { font-size: 15px; color: var(--gray-600); line-height: 1.7; margin-bottom: 12px; }
+    .topic-body ul { margin: 0 0 16px 20px; list-style: disc; }
+    .topic-body ul li { font-size: 15px; color: var(--gray-600); margin-bottom: 6px; line-height: 1.6; }
+    .callout {
+      background: var(--sky-light);
+      border-left: 4px solid var(--blue-light);
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .callout p { margin: 0; font-size: 14px; color: var(--navy-mid); }
+    .callout strong { color: var(--navy); }
+    .warning-callout {
+      background: #fff8e1;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .warning-callout p { margin: 0; font-size: 14px; color: #78350f; }
+    @media (max-width: 820px) {
+      .topic-section-inner { grid-template-columns: 1fr; gap: 24px; }
+      .topic-sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">$</div>
+        <div class="logo-text">
+          <span class="logo-top">DOLLAR</span>
+          <span class="logo-bottom">MATTERS</span>
+        </div>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item has-dropdown">
+            <button class="nav-link">What We Do <span class="caret">&#8964;</span></button>
+            <div class="dropdown"><div class="dropdown-inner">
+              <a href="programs.html">Our Programs</a>
+              <a href="topics.html">Financial Topics We Teach</a>
+              <a href="volunteer.html">Volunteer with Us</a>
+              <a href="impact.html">Our Impact</a>
+            </div></div>
+          </li>
+          <li class="nav-item has-dropdown">
+            <button class="nav-link">Financial Library <span class="caret">&#8964;</span></button>
+            <div class="dropdown"><div class="dropdown-inner">
+              <a href="glossary.html">Finance Glossary A–Z</a>
+              <a href="topics.html">Topic Guides</a>
+              <a href="resources.html">Tools &amp; Calculators</a>
+            </div></div>
+          </li>
+          <li class="nav-item has-dropdown">
+            <button class="nav-link">For Schools &amp; Partners <span class="caret">&#8964;</span></button>
+            <div class="dropdown"><div class="dropdown-inner">
+              <a href="schools.html">Bring Us to Your School</a>
+              <a href="community.html">Community Centers</a>
+              <a href="partners.html">Partner With Us</a>
+            </div></div>
+          </li>
+          <li class="nav-item has-dropdown">
+            <button class="nav-link">About <span class="caret">&#8964;</span></button>
+            <div class="dropdown"><div class="dropdown-inner">
+              <a href="about.html">About Dollar Matters</a>
+              <a href="team.html">Our Team</a>
+              <a href="contact.html">Contact Us</a>
+            </div></div>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="volunteer.html" class="btn btn-primary">Get Involved</a>
+        <button class="search-btn" id="search-btn" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="search-overlay" id="search-overlay">
+      <div class="search-overlay-inner">
+        <input type="text" class="search-overlay-input" placeholder="Search…" id="search-overlay-input" />
+        <button class="search-overlay-close" id="search-overlay-close">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Financial Topics We Teach</h1>
+        <p>Practical, plain-language guides to every topic covered in our workshops.</p>
+      </div>
+    </section>
+
+    <div style="padding: 0; background: var(--off-white); border-bottom: 1px solid var(--gray-200);">
+      <div class="container" style="padding-top:20px; padding-bottom:20px;">
+        <div class="topic-pills">
+          <a href="#saving" class="topic-pill">Saving</a>
+          <a href="#budgeting" class="topic-pill">Budgeting</a>
+          <a href="#interest" class="topic-pill">Interest &amp; Investing</a>
+          <a href="#credit" class="topic-pill">Credit</a>
+          <a href="#predatory" class="topic-pill">Predatory Lending</a>
+          <a href="#taxes" class="topic-pill">Taxes</a>
+          <a href="#banking" class="topic-pill">Banking</a>
+          <a href="#debt" class="topic-pill">Debt</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: var(--white);">
+      <div class="container">
+
+        <!-- SAVING -->
+        <div class="topic-section" id="saving">
+          <div class="topic-section-inner">
+            <div class="topic-sidebar">
+              <div class="topic-sidebar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.8 1.5-2.3 1.5-4"/><path d="M2 9.5C-2 14 2 19 5.5 19"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg>
+              </div>
+              <span class="topic-tag">Core topic</span>
+              <h2>Saving</h2>
+            </div>
+            <div class="topic-body">
+              <p>Saving is the foundation of financial health. It means setting aside money now so you have it later — whether for emergencies, a goal, or retirement.</p>
+              <h3>Why saving matters</h3>
+              <p>Without savings, any unexpected expense — a car repair, a medical bill, a lost job — becomes a crisis. Savings give you options and protect you from predatory lenders who profit when people are desperate.</p>
+              <h3>The emergency fund</h3>
+              <p>Your first savings goal should be an emergency fund: 3–6 months of basic living expenses in a separate savings account you don't touch unless it's a real emergency.</p>
+              <div class="callout">
+                <p><strong>Quick rule:</strong> Save before you spend. As soon as a paycheck hits, move a set amount to savings — even $20/week adds up to over $1,000 a year.</p>
+              </div>
+              <h3>Where to keep savings</h3>
+              <ul>
+                <li><strong>High-yield savings account (HYSA)</strong> — Earns more interest than a standard savings account. Look for 4–5% APY at online banks.</li>
+                <li><strong>Regular savings account</strong> — Earns very little (often under 0.5%) but is safe and accessible.</li>
+                <li><strong>Money market account</strong> — Similar to HYSA, sometimes with check-writing privileges.</li>
+              </ul>
+              <h3>Savings vs. investing</h3>
+              <p>Savings are for short-term needs and emergencies (low risk, accessible). Investing is for long-term goals — it carries more risk but higher potential returns. Build your emergency fund first, then think about investing.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUDGETING -->
+        <div class="topic-section" id="budgeting">
+          <div class="topic-section-inner">
+            <div class="topic-sidebar">
+              <div class="topic-sidebar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <span class="topic-tag">Core topic</span>
+              <h2>Budgeting</h2>
+            </div>
+            <div class="topic-body">
+              <p>A budget is a plan for your money. It tells your dollars where to go instead of wondering where they went.</p>
+              <h3>The 50/30/20 rule</h3>
+              <p>One simple budgeting framework divides your after-tax income into three categories:</p>
+              <ul>
+                <li><strong>50% Needs</strong> — Rent, groceries, utilities, transportation, minimum debt payments</li>
+                <li><strong>30% Wants</strong> — Dining out, entertainment, subscriptions, shopping</li>
+                <li><strong>20% Savings &amp; debt payoff</strong> — Emergency fund, retirement, extra debt payments</li>
+              </ul>
+              <div class="callout">
+                <p><strong>Example:</strong> If you take home $2,000/month, aim for $1,000 on needs, $600 on wants, and $400 toward savings and debt.</p>
+              </div>
+              <h3>How to track spending</h3>
+              <ul>
+                <li>Use a free budgeting app (Mint, YNAB, or your bank's built-in tools)</li>
+                <li>Review your bank statements weekly</li>
+                <li>Keep a simple spreadsheet if apps aren't your thing</li>
+              </ul>
+              <h3>Common budget mistakes</h3>
+              <ul>
+                <li>Forgetting irregular expenses (annual fees, car registration)</li>
+                <li>Not accounting for "fun" — deprivation budgets fail</li>
+                <li>Making the budget but never checking it</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- INTEREST -->
+        <div class="topic-section" id="interest">
+          <div class="topic-section-inner">
+            <div class="topic-sidebar">
+              <div class="topic-sidebar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <span class="topic-tag">Core topic</span>
+              <h2>Interest &amp; Investing</h2>
+            </div>
+            <div class="topic-body">
+              <p>Interest is the cost of borrowing money — or the reward for lending it (including to a bank via savings). Understanding interest is one of the most powerful things you can learn.</p>
+              <h3>Simple vs. compound interest</h3>
+              <p><strong>Simple interest</strong> is calculated only on your original amount (the principal). <strong>Compound interest</strong> is calculated on the principal plus all the interest already earned — meaning your money grows faster and faster over time.</p>
+              <div class="callout">
+                <p><strong>The magic of compounding:</strong> $1,000 invested at 7% annually becomes $1,967 in 10 years — and $7,612 in 30 years. The longer you wait, the more you miss out.</p>
+              </div>
+              <h3>APR vs. APY</h3>
+              <ul>
+                <li><strong>APR (Annual Percentage Rate)</strong> — The yearly cost of borrowing, including fees. Used for loans and credit cards.</li>
+                <li><strong>APY (Annual Percentage Yield)</strong> — The actual return on savings, factoring in compounding. Always look for a high APY on savings accounts.</li>
+              </ul>
+              <h3>Basics of investing</h3>
+              <p>Investing means putting money to work in assets (stocks, bonds, index funds) with the expectation it will grow. The key rules:</p>
+              <ul>
+                <li>Start early — time in the market beats timing the market</li>
+                <li>Diversify — don't put all your eggs in one basket</li>
+                <li>Low-cost index funds are great for beginners</li>
+                <li>Never invest money you can't afford to lose short-term</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CREDIT -->
+        <div class="topic-section" id="credit">
+          <div class="topic-section-inner">
+            <div class="topic-sidebar">
+              <div class="topic-sidebar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              </div>
+              <span class="topic-tag">Core topic</span>
+              <h2>Credit &amp; Credit Scores</h2>
+            </div>
+            <div class="topic-body">
+              <p>Your credit score is a three-digit number (300–850) that lenders use to decide whether to lend you money and at what interest rate. A higher score saves you money. A lower score costs you money.</p>
+              <h3>What makes up your credit score</h3>
+              <ul>
+                <li><strong>Payment history (35%)</strong> — Do you pay on time? This is the biggest factor.</li>
+                <li><strong>Amounts owed / utilization (30%)</strong> — How much of your available credit are you using? Keep it under 30%.</li>
+                <li><strong>Length of credit history (15%)</strong> — Older accounts help.</li>
+                <li><strong>Credit mix (10%)</strong> — Having different types of credit (cards, loans) can help.</li>
+                <li><strong>New credit inquiries (10%)</strong> — Applying for many new accounts at once can lower your score temporarily.</li>
+              </ul>
+              <h3>How to build credit from scratch</h3>
+              <ul>
+                <li>Open a secured credit card (you deposit money as collateral)</li>
+                <li>Become an authorized user on a parent or guardian's card</li>
+                <li>Pay your bills on time, every time</li>
+                <li>Keep balances low relative to your limit</li>
+              </ul>
+              <div class="callout">
+                <p><strong>Free credit reports:</strong> You're entitled to a free credit report from all three bureaus (Equifax, Experian, TransUnion) every year at AnnualCreditReport.com. Always check for errors.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PREDATORY LENDING -->
+        <div class="topic-section" id="predatory">
+          <div class="topic-section-inner">
+            <div class="topic-sidebar">
+              <div class="topic-sidebar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+              <span class="topic-tag">Watch out</span>
+              <h2>Predatory Lending</h2>
+            </div>
+            <div class="topic-body">
+              <p>Predatory lenders specifically target people who are financially stressed or lack financial knowledge. They profit from trapping borrowers in cycles of debt. Knowing their tactics is your best defense.</p>
+              <h3>Payday loans</h3>
+              <p>A payday loan is a small, short-term loan due on your next payday. They're marketed as "quick cash" — but the fees are enormous.</p>
+              <div class="warning-callout">
+                <p><strong>Real example:</strong> A $300 payday loan with a $45 fee has an APR of over 390%. If you can't pay it back, you roll it over — and the fees multiply. Many borrowers end up paying back 3x what they borrowed.</p>
+              </div>
+              <h3>Other predatory products to avoid</h3>
+              <ul>
+                <li><strong>Rent-to-own stores</strong> — You pay 2–4x the item's value over time. Better to save up and buy outright.</li>
+                <li><strong>Car title loans</strong> — You put your car up as collateral. Miss a payment and they can take it.</li>
+                <li><strong>"No credit check" loans</strong> — Often come with extremely high interest rates.</li>
+                <li><strong>Buy Now Pay Later (BNPL) abuse</strong> — Fine for planned purchases, dangerous when used for everyday spending.</li>
+              </ul>
+              <h3>Safer alternatives when you need cash fast</h3>
+              <ul>
+                <li>Credit unions often offer small emergency loans at much lower rates</li>
+                <li>Employer paycheck advances (no fees)</li>
+                <li>Community assistance programs for utilities, food, and rent</li>
+                <li>Negotiate a payment plan directly with who you owe</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXES -->
+        <div class="topic-section" id="taxes">
+          <div class="topic-section-inner">
+            <div class="topic-sidebar">
+              <div class="topic-sidebar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <span class="topic-tag">Core topic</span>
+              <h2>Taxes &amp; Filing</h2>
+            </div>
+            <div class="topic-body">
+              <p>Taxes fund public services — schools, roads, emergency services. As a working person, you'll pay income tax on your earnings. Understanding the basics helps you file correctly and keep more of what you earn.</p>
+              <h3>Key forms to know</h3>
+              <ul>
+                <li><strong>W-4</strong> — You fill this out when you start a job. It tells your employer how much tax to withhold from each paycheck.</li>
+                <li><strong>W-2</strong> — Your employer sends this in January. It shows your total earnings and taxes withheld for the year. You need it to file.</li>
+                <li><strong>1099</strong> — If you do freelance or gig work, you'll get this instead of a W-2.</li>
+                <li><strong>1040</strong> — The main form you file with the IRS. Many people can file for free online.</li>
+              </ul>
+              <h3>How tax brackets work</h3>
+              <p>The U.S. uses a <em>progressive</em> tax system — higher income is taxed at higher rates, but only on the amount above each threshold. You never pay the top rate on all your income.</p>
+              <div class="callout">
+                <p><strong>Free filing:</strong> If your income is under $79,000, you can file federal taxes for free through IRS Free File. Many states have free filing options too.</p>
+              </div>
+              <h3>Deductions and credits</h3>
+              <ul>
+                <li><strong>Deductions</strong> reduce your taxable income (e.g., student loan interest deduction).</li>
+                <li><strong>Credits</strong> directly reduce your tax bill — even more powerful. Look into the Earned Income Tax Credit (EITC) if your income qualifies.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.12)">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2025 Dollar Matters. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="glossary.html">Glossary</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
