@@ -153,14 +153,28 @@ document.querySelectorAll('.has-dropdown').forEach(item => {
   if (btn) {
     btn.addEventListener('click', () => {
       const isOpen = item.classList.contains('force-open');
-      document.querySelectorAll('.has-dropdown.force-open').forEach(el => el.classList.remove('force-open'));
-      if (!isOpen) item.classList.add('force-open');
+      document.querySelectorAll('.has-dropdown').forEach(el => {
+        el.classList.remove('force-open');
+        el.classList.remove('force-closed');
+      });
+      if (!isOpen) {
+        item.classList.add('force-open');
+      } else {
+        item.classList.add('force-closed');
+        btn.blur();
+      }
     });
   }
+  item.addEventListener('mouseleave', () => {
+    item.classList.remove('force-closed');
+  });
 });
 document.addEventListener('click', e => {
   if (!e.target.closest('.has-dropdown')) {
-    document.querySelectorAll('.has-dropdown.force-open').forEach(el => el.classList.remove('force-open'));
+    document.querySelectorAll('.has-dropdown').forEach(el => {
+      el.classList.remove('force-open');
+      el.classList.remove('force-closed');
+    });
   }
 });
 
