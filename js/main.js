@@ -645,6 +645,8 @@ document.addEventListener('click', e => {
   }
 });
 
+const WEB3FORMS_KEY = 'cc4bf580-9ec6-4357-b563-cd7bcfb39859';
+
 // ---- Contact / general form submission ----
 async function handleFormSubmit(e) {
   e.preventDefault();
@@ -658,21 +660,18 @@ async function handleFormSubmit(e) {
   btn.disabled = true;
 
   try {
-    const response = await fetch('https://formsubmit.co/ajax/danielfernandez2197@gmail.com', {
+    const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        ...data,
-        _captcha: 'false',
-        _subject: form.dataset.subject || 'Dollar Matters Form Submission'
+        access_key: WEB3FORMS_KEY,
+        subject: form.dataset.subject || 'Dollar Matters Form Submission',
+        ...data
       })
     });
 
     const result = await response.json().catch(() => ({}));
-    if (!response.ok || result.success === 'false') throw new Error('Submission failed');
+    if (!result.success) throw new Error(result.message || 'Submission failed');
 
     const successMessage = form.dataset.success || 'Message sent! We\'ll be in touch soon.';
     btn.textContent = successMessage;
@@ -708,22 +707,19 @@ async function handleNewsletterSubmit(e) {
   btn.disabled = true;
 
   try {
-    const response = await fetch('https://formsubmit.co/ajax/danielfernandez2197@gmail.com', {
+    const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        _subject: 'Newsletter Signup - Dollar Matters',
-        _captcha: 'false',
+        access_key: WEB3FORMS_KEY,
+        subject: 'Newsletter Signup - Dollar Matters',
         email: input ? input.value : '',
         source: 'Newsletter Footer'
       })
     });
 
     const result = await response.json().catch(() => ({}));
-    if (!response.ok || result.success === 'false') throw new Error('Submission failed');
+    if (!result.success) throw new Error(result.message || 'Submission failed');
 
     btn.textContent = 'Subscribed!';
     if (input) input.value = '';
