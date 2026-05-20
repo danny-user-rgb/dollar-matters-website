@@ -94,7 +94,7 @@
               <div class="dropdown-feature">
                 <p class="dropdown-feature-label">Free Resources</p>
                 <h3 class="dropdown-feature-title">Your financial knowledge hub</h3>
-                <p class="dropdown-feature-desc">Access our growing library of guides, glossaries, and tools — all free, all designed for real-world use.</p>
+                <p class="dropdown-feature-desc">Access our growing library of guides, glossaries, and tools, all free, all designed for real-world use.</p>
                 <a href="glossary.html" class="dropdown-feature-link">Browse the glossary &rarr;</a>
               </div>
             </div></div>
@@ -109,7 +109,7 @@
               </div>
               <div class="dropdown-feature">
                 <p class="dropdown-feature-label">Partner With Us</p>
-                <h3 class="dropdown-feature-title">We come to you &mdash; free &amp; fully prepared</h3>
+                <h3 class="dropdown-feature-title">We come to you, free &amp; fully prepared</h3>
                 <p class="dropdown-feature-desc">Our trained volunteers bring workshops directly to your school or community center at no cost to you.</p>
                 <a href="schools.html" class="dropdown-feature-link">Request a workshop &rarr;</a>
               </div>
@@ -172,14 +172,14 @@
 
         <h2 style="margin-top:0">Why volunteer?</h2>
         <p>Teaching financial literacy is one of the highest-impact things you can do with a few hours a month. You'll build public speaking and curriculum delivery skills, deepen your own financial knowledge, and directly change the financial trajectory of the students you reach.</p>
-        <p>No finance degree required — just enthusiasm, reliability, and a willingness to learn alongside us.</p>
+        <p>No finance degree required, just enthusiasm, reliability, and a willingness to learn alongside us.</p>
 
         <h2 id="apply">How it works</h2>
         <div class="volunteer-grid">
           <div class="volunteer-step">
             <div class="step-num">1</div>
             <h3>Apply online</h3>
-            <p>Fill out the short form below. We accept volunteers on a rolling basis — no semester cutoffs.</p>
+            <p>Fill out the short form below. We accept volunteers on a rolling basis, no semester cutoffs.</p>
           </div>
           <div class="volunteer-step">
             <div class="step-num">2</div>
@@ -211,7 +211,7 @@
         <p><strong>Do I need to be a finance or business major?</strong><br>
         No. We welcome volunteers from all majors. We train you on everything you need to know.</p>
         <p><strong>How much time does it take?</strong><br>
-        Most volunteers commit 2–4 hours per month — one workshop session plus a short debrief.</p>
+        Most volunteers commit 2–4 hours per month, one workshop session plus a short debrief.</p>
         <p><strong>Is this in-person or virtual?</strong><br>
         Both. We offer in-person sessions at partnering schools and community centers, as well as virtual workshops.</p>
         <p><strong>Can I get course credit?</strong><br>
@@ -220,31 +220,31 @@
         <!-- APPLICATION FORM -->
         <div class="form-section" id="apply-form">
           <h2>Apply to volunteer</h2>
-          <form onsubmit="handleFormSubmit(event, this)">
+          <form onsubmit="handleFormSubmit(event, this)" data-success="Application received! We'll be in touch soon." data-subject="Volunteer Application - Dollar Matters">
             <div class="form-row">
               <div class="form-group">
                 <label for="vol-first">First name</label>
-                <input type="text" id="vol-first" placeholder="Jane" required />
+                <input type="text" id="vol-first" name="first_name" placeholder="Jane" required />
               </div>
               <div class="form-group">
                 <label for="vol-last">Last name</label>
-                <input type="text" id="vol-last" placeholder="Smith" required />
+                <input type="text" id="vol-last" name="last_name" placeholder="Smith" required />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="vol-email">Email address</label>
-                <input type="email" id="vol-email" placeholder="jane@university.edu" required />
+                <input type="email" id="vol-email" name="email" placeholder="jane@university.edu" required />
               </div>
               <div class="form-group">
                 <label for="vol-school">Your university / college</label>
-                <input type="text" id="vol-school" placeholder="State University" required />
+                <input type="text" id="vol-school" name="university" placeholder="State University" required />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="vol-year">Year in school</label>
-                <select id="vol-year" required>
+                <select id="vol-year" name="year_in_school" required>
                   <option value="">Select…</option>
                   <option>Freshman</option>
                   <option>Sophomore</option>
@@ -255,12 +255,12 @@
               </div>
               <div class="form-group">
                 <label for="vol-major">Major / field of study</label>
-                <input type="text" id="vol-major" placeholder="Economics" />
+                <input type="text" id="vol-major" name="major" placeholder="Economics" />
               </div>
             </div>
             <div class="form-group">
               <label for="vol-why">Why do you want to volunteer? (optional)</label>
-              <textarea id="vol-why" placeholder="Tell us a little about why you're interested…"></textarea>
+              <textarea id="vol-why" name="message" placeholder="Tell us a little about why you're interested…"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; font-size:15px; padding:14px">Submit Application</button>
           </form>
@@ -392,14 +392,5 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script>
-    function handleFormSubmit(e, form) {
-      e.preventDefault();
-      const btn = form.querySelector('button[type=submit]');
-      btn.textContent = 'Application received! We\'ll be in touch soon.';
-      btn.style.background = '#1a7a4a';
-      btn.disabled = true;
-    }
-  </script>
 </body>
 </html>

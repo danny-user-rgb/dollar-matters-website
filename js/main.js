@@ -1,4 +1,4 @@
-/* Dollar Matters — Main JS */
+/* Dollar Matters - Main JS */
 
 // ---- Alpha grid ----
 const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -23,13 +23,13 @@ buildAlphaGrid('alpha-grid-page', true);
 const TERMS = [
   { term: 'Annual Percentage Rate (APR)', def: 'The yearly interest rate charged on borrowed money, including fees.', letter: 'A' },
   { term: 'Annual Percentage Yield (APY)', def: 'The real rate of return on a savings account, factoring in compound interest.', letter: 'A' },
-  { term: 'Asset', def: 'Anything you own that has monetary value — cash, property, investments.', letter: 'A' },
+  { term: 'Asset', def: 'Anything you own that has monetary value: cash, property, investments.', letter: 'A' },
   { term: 'Amortization', def: 'The process of paying off a loan through regular scheduled payments over time.', letter: 'A' },
   { term: 'Budget', def: 'A plan for how you will spend and save your money each month.', letter: 'B' },
   { term: 'Balance', def: 'The amount of money in a bank account or owed on a credit card.', letter: 'B' },
   { term: 'Bankruptcy', def: 'A legal process that helps people who cannot repay debts get relief from some or all of what they owe.', letter: 'B' },
   { term: 'Bond', def: 'A loan you give to a government or company in exchange for interest payments.', letter: 'B' },
-  { term: 'Compound Interest', def: 'Interest calculated on both the initial principal and the accumulated interest — making your money grow faster over time.', letter: 'C' },
+  { term: 'Compound Interest', def: 'Interest calculated on both the initial principal and the accumulated interest, making your money grow faster over time.', letter: 'C' },
   { term: 'Credit', def: 'The ability to borrow money with the agreement to pay it back later.', letter: 'C' },
   { term: 'Credit Score', def: 'A number (300–850) that represents how likely you are to repay debts. Higher is better.', letter: 'C' },
   { term: 'Credit Report', def: 'A detailed record of your credit history, including loans, credit cards, and payment history.', letter: 'C' },
@@ -42,7 +42,7 @@ const TERMS = [
   { term: 'Diversification', def: 'Spreading investments across different assets to reduce risk.', letter: 'D' },
   { term: 'Emergency Fund', def: 'Savings set aside specifically for unexpected expenses, typically 3–6 months of living costs.', letter: 'E' },
   { term: 'Equity', def: 'The value of an asset minus any debts owed against it. In a home, it\'s your ownership stake.', letter: 'E' },
-  { term: 'FDIC', def: 'Federal Deposit Insurance Corporation — insures bank deposits up to $250,000 per depositor.', letter: 'F' },
+  { term: 'FDIC', def: 'Federal Deposit Insurance Corporation: insures bank deposits up to $250,000 per depositor.', letter: 'F' },
   { term: 'FICO Score', def: 'The most widely used credit scoring model, ranging from 300 to 850.', letter: 'F' },
   { term: 'Fixed Rate', def: 'An interest rate that stays the same for the life of a loan.', letter: 'F' },
   { term: 'Foreclosure', def: 'The legal process by which a lender takes ownership of a property when the borrower fails to make mortgage payments.', letter: 'F' },
@@ -60,7 +60,7 @@ const TERMS = [
   { term: 'Net Income', def: 'Your take-home pay after taxes and other deductions have been subtracted.', letter: 'N' },
   { term: 'Net Worth', def: 'The total value of everything you own minus everything you owe.', letter: 'N' },
   { term: 'Overdraft', def: 'When you spend more money than you have in your account, resulting in a negative balance and often a fee.', letter: 'O' },
-  { term: 'Payday Loan', def: 'A short-term, high-interest loan typically due on your next payday. Often predatory — APRs can exceed 400%.', letter: 'P' },
+  { term: 'Payday Loan', def: 'A short-term, high-interest loan typically due on your next payday. Often predatory; APRs can exceed 400%.', letter: 'P' },
   { term: 'Principal', def: 'The original amount of money borrowed or invested, before interest.', letter: 'P' },
   { term: 'Predatory Lending', def: 'Unfair or deceptive loan practices that target vulnerable borrowers with excessive fees and impossible terms.', letter: 'P' },
   { term: 'Roth IRA', def: 'A retirement account funded with after-tax money; qualified withdrawals in retirement are tax-free.', letter: 'R' },
@@ -113,10 +113,48 @@ const searchOverlayClose = document.getElementById('search-overlay-close');
 const searchOverlayInput = document.getElementById('search-overlay-input');
 const searchClearBtn = document.getElementById('search-clear-btn');
 
+// Inject results container into overlay
+let overlayResults = null;
+if (searchOverlay) {
+  overlayResults = document.createElement('div');
+  overlayResults.className = 'search-overlay-results';
+  overlayResults.id = 'search-overlay-results';
+  searchOverlay.appendChild(overlayResults);
+}
+
+function runOverlaySearch(q) {
+  if (!overlayResults) return;
+  const query = (q || '').trim().toLowerCase();
+  if (!query) {
+    overlayResults.innerHTML = '';
+    overlayResults.classList.remove('active');
+    return;
+  }
+  const matches = TERMS.filter(t =>
+    t.term.toLowerCase().includes(query) || t.def.toLowerCase().includes(query)
+  ).slice(0, 8);
+
+  if (!matches.length) {
+    overlayResults.innerHTML = '<div class="overlay-no-results">No financial terms found for that search.</div>';
+  } else {
+    overlayResults.innerHTML = matches.map(m => {
+      const termHighlighted = m.term.replace(new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<strong>$1</strong>');
+      const defHighlighted = m.def.replace(new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<strong>$1</strong>');
+      return `<a class="overlay-result-item" href="glossary.html#letter-${m.letter}">` +
+        `<span class="overlay-result-term">${termHighlighted}</span>` +
+        `<span class="overlay-result-def">${defHighlighted}</span>` +
+        `</a>`;
+    }).join('');
+  }
+  overlayResults.classList.add('active');
+}
+
 if (searchBtn) {
   searchBtn.addEventListener('click', () => {
     searchOverlay.classList.toggle('active');
-    if (searchOverlay.classList.contains('active')) searchOverlayInput.focus();
+    if (searchOverlay.classList.contains('active')) {
+      searchOverlayInput.focus();
+    }
   });
 }
 if (searchOverlayClose) {
@@ -124,26 +162,101 @@ if (searchOverlayClose) {
     searchOverlay.classList.remove('active');
     if (searchOverlayInput) searchOverlayInput.value = '';
     if (searchClearBtn) searchClearBtn.classList.remove('visible');
+    if (overlayResults) {
+      overlayResults.innerHTML = '';
+      overlayResults.classList.remove('active');
+    }
   });
 }
 if (searchOverlayInput && searchClearBtn) {
   searchOverlayInput.addEventListener('input', function () {
     searchClearBtn.classList.toggle('visible', this.value.length > 0);
+    runOverlaySearch(this.value);
+  });
+  searchOverlayInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      runOverlaySearch(this.value);
+    }
   });
   searchClearBtn.addEventListener('click', function () {
     searchOverlayInput.value = '';
     searchClearBtn.classList.remove('visible');
     searchOverlayInput.focus();
+    if (overlayResults) {
+      overlayResults.innerHTML = '';
+      overlayResults.classList.remove('active');
+    }
   });
 }
 
-// ---- Mobile hamburger ----
+const searchSubmitBtn = document.querySelector('.search-submit-btn');
+if (searchSubmitBtn && searchOverlayInput) {
+  searchSubmitBtn.addEventListener('click', () => {
+    runOverlaySearch(searchOverlayInput.value);
+  });
+}
+
+// ---- Mobile hamburger + quick-link tiles ----
 const hamburger = document.getElementById('hamburger');
 const mainNav = document.getElementById('main-nav');
 if (hamburger && mainNav) {
   hamburger.addEventListener('click', () => {
     mainNav.classList.toggle('open');
     hamburger.classList.toggle('open');
+
+    // Inject quick-link tiles on first open
+    if (mainNav.classList.contains('open') && !document.getElementById('mobile-quick-links')) {
+      const tiles = document.createElement('div');
+      tiles.id = 'mobile-quick-links';
+      tiles.className = 'mobile-quick-links';
+
+      const links = [
+        {
+          href: 'volunteer.html',
+          text: 'Volunteer',
+          svg: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>`
+        },
+        {
+          href: 'glossary.html',
+          text: 'Glossary',
+          svg: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>`
+        },
+        {
+          href: 'schools.html',
+          text: 'Request Workshop',
+          svg: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>`
+        },
+        {
+          href: 'contact.html',
+          text: 'Contact',
+          svg: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>`
+        }
+      ];
+
+      links.forEach(link => {
+        const a = document.createElement('a');
+        a.className = 'mobile-quick-tile';
+        a.href = link.href;
+        a.innerHTML = link.svg + `<span>${link.text}</span>`;
+        tiles.appendChild(a);
+      });
+
+      mainNav.insertBefore(tiles, mainNav.firstChild);
+    }
   });
 }
 
@@ -178,19 +291,104 @@ document.addEventListener('click', e => {
   }
 });
 
-// ---- Newsletter form ----
-function handleNewsletterSubmit(e) {
+// ---- Contact / general form submission ----
+async function handleFormSubmit(e) {
   e.preventDefault();
   const form = e.target;
-  const input = form.querySelector('input');
+  const btn = form.querySelector('button[type="submit"]');
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  const originalText = btn.textContent;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/danielfernandez@miami.edu', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        ...data,
+        _captcha: 'false',
+        _subject: form.dataset.subject || 'Dollar Matters Form Submission'
+      })
+    });
+
+    if (!response.ok) throw new Error('Network response was not ok');
+
+    const successMessage = form.dataset.success || 'Message sent! We\'ll be in touch soon.';
+    btn.textContent = successMessage;
+    btn.style.background = '#1a7a4a';
+    btn.style.borderColor = '#1a7a4a';
+    // Keep disabled, form is complete
+  } catch (err) {
+    btn.textContent = 'Error sending. Please try again.';
+    btn.style.background = '#c62828';
+    btn.style.borderColor = '#c62828';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.disabled = false;
+    }, 3000);
+  }
+}
+
+// Attach to any forms with data-formsubmit attribute
+document.querySelectorAll('form[data-formsubmit]').forEach(form => {
+  form.addEventListener('submit', handleFormSubmit);
+});
+
+// ---- Newsletter form ----
+async function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const input = form.querySelector('input[type="email"], input[type="text"]');
   const btn = form.querySelector('button');
-  btn.textContent = 'Subscribed!';
-  btn.style.background = 'rgba(255,255,255,0.35)';
-  input.value = '';
-  setTimeout(() => {
-    btn.textContent = 'Subscribe';
-    btn.style.background = '';
-  }, 3000);
+
+  const originalText = btn.textContent;
+  btn.textContent = 'Subscribing...';
+  btn.disabled = true;
+
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/danielfernandez@miami.edu', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: 'Newsletter Signup - Dollar Matters',
+        _captcha: 'false',
+        email: input ? input.value : '',
+        source: 'Newsletter Footer'
+      })
+    });
+
+    if (!response.ok) throw new Error('Network response was not ok');
+
+    btn.textContent = 'Subscribed!';
+    if (input) input.value = '';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 3000);
+  } catch (err) {
+    btn.textContent = 'Try again';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 3000);
+  }
+}
+
+// Attach newsletter form
+const newsletterForm = document.querySelector('.newsletter-form');
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', handleNewsletterSubmit);
 }
 
 // ---- Glossary page: build terms ----
