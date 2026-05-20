@@ -658,7 +658,7 @@ async function handleFormSubmit(e) {
   btn.disabled = true;
 
   try {
-    const response = await fetch('https://formsubmit.co/ajax/danielfernandez@miami.edu', {
+    const response = await fetch('https://formsubmit.co/ajax/danielfernandez2197@gmail.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -671,13 +671,13 @@ async function handleFormSubmit(e) {
       })
     });
 
-    if (!response.ok) throw new Error('Network response was not ok');
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.success === 'false') throw new Error('Submission failed');
 
     const successMessage = form.dataset.success || 'Message sent! We\'ll be in touch soon.';
     btn.textContent = successMessage;
     btn.style.background = '#1a7a4a';
     btn.style.borderColor = '#1a7a4a';
-    // Keep disabled, form is complete
   } catch (err) {
     btn.textContent = 'Error sending. Please try again.';
     btn.style.background = '#c62828';
@@ -708,7 +708,7 @@ async function handleNewsletterSubmit(e) {
   btn.disabled = true;
 
   try {
-    const response = await fetch('https://formsubmit.co/ajax/danielfernandez@miami.edu', {
+    const response = await fetch('https://formsubmit.co/ajax/danielfernandez2197@gmail.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -722,7 +722,8 @@ async function handleNewsletterSubmit(e) {
       })
     });
 
-    if (!response.ok) throw new Error('Network response was not ok');
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.success === 'false') throw new Error('Submission failed');
 
     btn.textContent = 'Subscribed!';
     if (input) input.value = '';
