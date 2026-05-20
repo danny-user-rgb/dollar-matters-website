@@ -3,11 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tools &amp; Calculators | Dollar Matters</title>
+  <title>Budget Calculator | Dollar Matters</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    .calc-wrap { max-width: 680px; margin: 0 auto; padding: 48px 0 80px; }
+    .calc-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--blue-link); text-decoration: none; margin-bottom: 36px; }
+    .calc-back:hover { color: var(--navy); }
+    .calc-form { background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px; padding: 36px; margin-bottom: 28px; }
+    .calc-form h2 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--navy); margin-bottom: 6px; }
+    .calc-form p { font-size: 14.5px; color: var(--gray-600); margin-bottom: 28px; line-height: 1.6; }
+    .input-group { margin-bottom: 24px; }
+    .input-group label { display: block; font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .input-prefix-wrap { position: relative; display: flex; align-items: center; }
+    .input-prefix { position: absolute; left: 14px; font-size: 16px; color: var(--gray-400); pointer-events: none; font-weight: 500; }
+    .input-prefix-wrap input { width: 100%; padding: 12px 16px 12px 30px; font-size: 16px; border: 1.5px solid var(--gray-200); border-radius: 8px; font-family: var(--font-sans); outline: none; transition: border-color 0.2s; }
+    .input-prefix-wrap input:focus { border-color: var(--blue); }
+    .calc-btn { width: 100%; padding: 14px; background: var(--navy); color: var(--white); font-size: 15px; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; font-family: var(--font-sans); transition: background 0.2s; margin-top: 8px; }
+    .calc-btn:hover { background: var(--navy-dark); }
+    .calc-result { display: none; border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200); margin-bottom: 28px; }
+    .calc-result.show { display: block; }
+    .result-header { background: var(--navy); color: var(--white); padding: 20px 28px; }
+    .result-header h3 { font-family: var(--font-serif); font-size: 1.1rem; margin: 0; }
+    .result-header p { font-size: 13px; opacity: 0.75; margin: 4px 0 0; }
+    .result-body { padding: 0; }
+    .result-row { display: flex; align-items: center; gap: 20px; padding: 18px 28px; border-bottom: 1px solid var(--gray-100); }
+    .result-row:last-child { border-bottom: none; }
+    .result-color { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+    .result-label { flex: 1; }
+    .result-label strong { font-size: 14.5px; color: var(--black); display: block; }
+    .result-label span { font-size: 12.5px; color: var(--gray-600); }
+    .result-amount { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: var(--navy); }
+    .result-bar-wrap { background: var(--gray-100); height: 8px; border-radius: 4px; margin: 16px 28px 20px; overflow: hidden; display: none; }
+    .result-bar-wrap.show { display: flex; }
+    .bar-needs { background: #1565c0; }
+    .bar-wants { background: #42a5f5; }
+    .bar-savings { background: #1b5e20; height: 100%; }
+    .callout-note { background: var(--sky-light); border-left: 4px solid var(--blue-light); border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 4px; font-size: 14px; color: var(--navy-mid); line-height: 1.6; }
+  </style>
 </head>
 <body>
 
@@ -111,143 +146,84 @@
     </div>
   </header>
 
-  <style>
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin: 48px 0 56px;
-    }
-    @media (max-width: 700px) {
-      .tools-grid { grid-template-columns: 1fr; }
-    }
-    .tool-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 10px;
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-    }
-    .tool-card:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
-      border-color: var(--blue-light);
-      transform: translateY(-3px);
-      color: inherit;
-    }
-    .tool-card-icon {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: var(--sky-light);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--navy);
-      margin-bottom: 4px;
-    }
-    .tool-card h2 {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      color: var(--navy);
-      margin: 0;
-    }
-    .tool-card p {
-      font-size: 14.5px;
-      color: var(--gray-600);
-      line-height: 1.65;
-      margin: 0;
-    }
-    .tool-card-cta {
-      margin-top: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--blue-link);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .tool-card:hover .tool-card-cta { color: var(--navy); }
-    .ext-resources { padding: 40px 0 24px; border-top: 1px solid var(--gray-200); }
-    .ext-resources h2 {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      color: var(--navy);
-      margin-bottom: 20px;
-    }
-    .ext-resources ul { list-style: disc; margin-left: 20px; }
-    .ext-resources ul li { font-size: 15px; color: var(--gray-600); margin-bottom: 12px; line-height: 1.6; }
-    .ext-resources ul li a { color: var(--blue-link); }
-  </style>
-
   <main>
     <section class="page-hero">
       <div class="container">
-        <h1>Tools &amp; Calculators</h1>
-        <p>Free interactive tools to help you make smarter financial decisions.</p>
+        <h1>Budget Calculator</h1>
+        <p>Use the 50/30/20 rule to build a monthly budget that works for your income.</p>
       </div>
     </section>
 
-    <section style="padding: 0 0 80px;">
-      <div class="container">
+    <div class="container">
+      <div class="calc-wrap">
 
-        <div class="tools-grid">
+        <a href="resources.html" class="calc-back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Tools &amp; Calculators
+        </a>
 
-          <a href="calculator-budget.html" class="tool-card">
-            <div class="tool-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <div class="calc-form">
+          <h2>Enter Your Monthly Income</h2>
+          <p>Enter your monthly take-home pay (after taxes). The 50/30/20 rule will divide it into recommended spending categories.</p>
+          <div class="input-group">
+            <label for="monthly-income">Monthly take-home pay</label>
+            <div class="input-prefix-wrap">
+              <span class="input-prefix">$</span>
+              <input type="number" id="monthly-income" placeholder="e.g. 2500" min="0" step="1" />
             </div>
-            <h2>Budget Calculator</h2>
-            <p>Use the 50/30/20 rule to split your monthly income into needs, wants, and savings. Enter your take-home pay and get an instant breakdown.</p>
-            <span class="tool-card-cta">Open calculator &rarr;</span>
-          </a>
-
-          <a href="calculator-compound-interest.html" class="tool-card">
-            <div class="tool-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <h2>Compound Interest Calculator</h2>
-            <p>See how your savings grow over time. Adjust the principal, interest rate, and years to understand the power of starting early.</p>
-            <span class="tool-card-cta">Open calculator &rarr;</span>
-          </a>
-
-          <a href="guide-credit-score.html" class="tool-card">
-            <div class="tool-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            </div>
-            <h2>Credit Score Guide</h2>
-            <p>Understand the five factors that make up your credit score, what each one means, and what steps you can take to improve it.</p>
-            <span class="tool-card-cta">Open guide &rarr;</span>
-          </a>
-
-          <a href="calculator-loan.html" class="tool-card">
-            <div class="tool-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            </div>
-            <h2>Loan Cost Estimator</h2>
-            <p>Compare the true costs of payday loans, personal loans, and credit card debt side by side. See exactly how much you'll repay across different APRs.</p>
-            <span class="tool-card-cta">Open estimator &rarr;</span>
-          </a>
-
+          </div>
+          <button class="calc-btn" onclick="calculateBudget()">Calculate my budget</button>
         </div>
 
-        <div class="ext-resources">
-          <h2>Free External Resources</h2>
-          <ul>
-            <li><strong>Consumer Financial Protection Bureau (CFPB)</strong> — Free tools and guides for managing credit, debt, and banking. <a href="https://www.consumerfinance.gov" target="_blank" rel="noopener">consumerfinance.gov</a></li>
-            <li><strong>MyMoney.gov</strong> — The U.S. government's official financial literacy portal. <a href="https://www.mymoney.gov" target="_blank" rel="noopener">mymoney.gov</a></li>
-            <li><strong>Khan Academy Personal Finance</strong> — Free courses covering budgeting, taxes, retirement, and more. <a href="https://www.khanacademy.org/college-careers-more/personal-finance" target="_blank" rel="noopener">khanacademy.org</a></li>
-            <li><strong>AnnualCreditReport.com</strong> — Get your free credit reports from all three bureaus once per year. <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener">annualcreditreport.com</a></li>
-          </ul>
-          <div style="margin-top:36px; display:flex; gap:16px; flex-wrap:wrap">
-            <a href="glossary.html" class="btn btn-primary">Browse the glossary</a>
-            <a href="topics.html" class="btn btn-outline-dark">Explore topic guides</a>
+        <div class="calc-result" id="budget-result">
+          <div class="result-header">
+            <h3>Your 50/30/20 Budget</h3>
+            <p id="result-income-label">Based on a monthly income of $0</p>
+          </div>
+          <div class="result-bar-wrap" id="budget-bar">
+            <div class="bar-needs" id="bar-needs-el" style="height:100%"></div>
+            <div class="bar-wants" id="bar-wants-el" style="height:100%"></div>
+            <div class="bar-savings" id="bar-savings-el"></div>
+          </div>
+          <div class="result-body">
+            <div class="result-row">
+              <div class="result-color" style="background:#1565c0"></div>
+              <div class="result-label">
+                <strong>50% &mdash; Needs</strong>
+                <span>Rent, groceries, utilities, transportation, minimum debt payments</span>
+              </div>
+              <div class="result-amount" id="needs-amount">$0</div>
+            </div>
+            <div class="result-row">
+              <div class="result-color" style="background:#42a5f5"></div>
+              <div class="result-label">
+                <strong>30% &mdash; Wants</strong>
+                <span>Dining out, entertainment, subscriptions, shopping, hobbies</span>
+              </div>
+              <div class="result-amount" id="wants-amount">$0</div>
+            </div>
+            <div class="result-row">
+              <div class="result-color" style="background:#1b5e20"></div>
+              <div class="result-label">
+                <strong>20% &mdash; Savings &amp; Debt Payoff</strong>
+                <span>Emergency fund, retirement contributions, extra debt payments</span>
+              </div>
+              <div class="result-amount" id="savings-amount">$0</div>
+            </div>
           </div>
         </div>
 
+        <div class="callout-note">
+          <strong>This is a starting point, not a strict rule.</strong> If you live in a high-cost city, your needs may be more than 50%. That's okay — the goal is awareness. Adjust the percentages to fit your real life, but always try to save something first.
+        </div>
+
+        <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="topics.html#budgeting" class="btn btn-primary">Learn more about budgeting</a>
+          <a href="resources.html" class="btn btn-outline-dark">More tools</a>
+        </div>
+
       </div>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -345,5 +321,40 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    function fmt(n) {
+      return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function calculateBudget() {
+      const raw = parseFloat(document.getElementById('monthly-income').value);
+      if (!raw || raw <= 0) {
+        alert('Please enter a valid monthly income amount.');
+        return;
+      }
+      const needs = raw * 0.50;
+      const wants = raw * 0.30;
+      const savings = raw * 0.20;
+
+      document.getElementById('result-income-label').textContent = 'Based on a monthly income of ' + fmt(raw);
+      document.getElementById('needs-amount').textContent = fmt(needs);
+      document.getElementById('wants-amount').textContent = fmt(wants);
+      document.getElementById('savings-amount').textContent = fmt(savings);
+
+      document.getElementById('bar-needs-el').style.width = '50%';
+      document.getElementById('bar-wants-el').style.width = '30%';
+      document.getElementById('bar-savings-el').style.width = '20%';
+
+      const result = document.getElementById('budget-result');
+      const bar = document.getElementById('budget-bar');
+      result.classList.add('show');
+      bar.classList.add('show');
+      result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    document.getElementById('monthly-income').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') calculateBudget();
+    });
+  </script>
 </body>
 </html>
