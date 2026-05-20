@@ -3,11 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tools &amp; Calculators | Dollar Matters</title>
+  <title>Credit Score Guide | Dollar Matters</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    .guide-wrap { max-width: 760px; margin: 0 auto; padding: 48px 0 80px; }
+    .calc-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--blue-link); text-decoration: none; margin-bottom: 36px; }
+    .calc-back:hover { color: var(--navy); }
+
+    .score-range-bar { background: linear-gradient(to right, #d32f2f, #f57c00, #fbc02d, #388e3c, #1b5e20); height: 18px; border-radius: 9px; margin: 20px 0 8px; position: relative; }
+    .score-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-600); margin-bottom: 24px; }
+
+    .factor-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px; padding: 28px; margin-bottom: 20px; }
+    .factor-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .factor-pct { width: 60px; height: 60px; border-radius: 50%; background: var(--navy); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; flex-shrink: 0; }
+    .factor-title { }
+    .factor-title h3 { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); margin: 0 0 4px; }
+    .factor-title span { font-size: 13px; color: var(--gray-600); }
+    .factor-bar-wrap { height: 8px; background: var(--gray-100); border-radius: 4px; margin-bottom: 14px; overflow: hidden; }
+    .factor-bar { height: 100%; border-radius: 4px; background: var(--blue-light); }
+    .factor-body p { font-size: 14.5px; color: var(--gray-600); line-height: 1.65; margin-bottom: 10px; }
+    .factor-tips { margin: 0; padding: 0; list-style: none; }
+    .factor-tips li { font-size: 13.5px; color: var(--gray-600); padding: 6px 0 6px 20px; border-bottom: 1px solid var(--gray-100); position: relative; line-height: 1.5; }
+    .factor-tips li:last-child { border-bottom: none; }
+    .factor-tips li::before { content: '✓'; position: absolute; left: 0; color: #2e7d32; font-weight: 700; }
+
+    .score-ranges { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 24px 0 32px; }
+    @media (max-width: 600px) { .score-ranges { grid-template-columns: 1fr 1fr; } }
+    .score-range-item { border-radius: 8px; padding: 14px 12px; text-align: center; }
+    .score-range-item .range-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+    .score-range-item .range-nums { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; }
+    .range-poor { background: #ffebee; color: #c62828; }
+    .range-fair { background: #fff3e0; color: #e65100; }
+    .range-good { background: #fff8e1; color: #f57f17; }
+    .range-vgood { background: #e8f5e9; color: #2e7d32; }
+    .range-except { background: #e3f2fd; color: #0d47a1; }
+
+    .callout-note { background: var(--sky-light); border-left: 4px solid var(--blue-light); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: var(--navy-mid); line-height: 1.6; }
+    .warning-note { background: #fff8e1; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: #78350f; line-height: 1.6; }
+
+    .section-title { font-family: var(--font-serif); font-size: 1.5rem; color: var(--navy); margin: 40px 0 16px; }
+  </style>
 </head>
 <body>
 
@@ -111,143 +149,166 @@
     </div>
   </header>
 
-  <style>
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin: 48px 0 56px;
-    }
-    @media (max-width: 700px) {
-      .tools-grid { grid-template-columns: 1fr; }
-    }
-    .tool-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 10px;
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-    }
-    .tool-card:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
-      border-color: var(--blue-light);
-      transform: translateY(-3px);
-      color: inherit;
-    }
-    .tool-card-icon {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: var(--sky-light);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--navy);
-      margin-bottom: 4px;
-    }
-    .tool-card h2 {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      color: var(--navy);
-      margin: 0;
-    }
-    .tool-card p {
-      font-size: 14.5px;
-      color: var(--gray-600);
-      line-height: 1.65;
-      margin: 0;
-    }
-    .tool-card-cta {
-      margin-top: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--blue-link);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .tool-card:hover .tool-card-cta { color: var(--navy); }
-    .ext-resources { padding: 40px 0 24px; border-top: 1px solid var(--gray-200); }
-    .ext-resources h2 {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      color: var(--navy);
-      margin-bottom: 20px;
-    }
-    .ext-resources ul { list-style: disc; margin-left: 20px; }
-    .ext-resources ul li { font-size: 15px; color: var(--gray-600); margin-bottom: 12px; line-height: 1.6; }
-    .ext-resources ul li a { color: var(--blue-link); }
-  </style>
-
   <main>
     <section class="page-hero">
       <div class="container">
-        <h1>Tools &amp; Calculators</h1>
-        <p>Free interactive tools to help you make smarter financial decisions.</p>
+        <h1>Credit Score Guide</h1>
+        <p>Understand what makes up your credit score, what the numbers mean, and how to improve it.</p>
       </div>
     </section>
 
-    <section style="padding: 0 0 80px;">
-      <div class="container">
+    <div class="container">
+      <div class="guide-wrap">
 
-        <div class="tools-grid">
+        <a href="resources.html" class="calc-back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Tools &amp; Calculators
+        </a>
 
-          <a href="calculator-budget.html" class="tool-card">
-            <div class="tool-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            </div>
-            <h2>Budget Calculator</h2>
-            <p>Use the 50/30/20 rule to split your monthly income into needs, wants, and savings. Enter your take-home pay and get an instant breakdown.</p>
-            <span class="tool-card-cta">Open calculator &rarr;</span>
-          </a>
+        <h2 class="section-title">What Is a Credit Score?</h2>
+        <p style="font-size:15px; color:var(--gray-600); line-height:1.7; margin-bottom:16px;">Your credit score is a three-digit number (typically 300–850) that tells lenders how likely you are to repay borrowed money. The higher your score, the better your borrowing terms. A difference of 100 points can mean thousands of dollars in extra interest over the life of a loan.</p>
 
-          <a href="calculator-compound-interest.html" class="tool-card">
-            <div class="tool-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <h2>Compound Interest Calculator</h2>
-            <p>See how your savings grow over time. Adjust the principal, interest rate, and years to understand the power of starting early.</p>
-            <span class="tool-card-cta">Open calculator &rarr;</span>
-          </a>
-
-          <a href="guide-credit-score.html" class="tool-card">
-            <div class="tool-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            </div>
-            <h2>Credit Score Guide</h2>
-            <p>Understand the five factors that make up your credit score, what each one means, and what steps you can take to improve it.</p>
-            <span class="tool-card-cta">Open guide &rarr;</span>
-          </a>
-
-          <a href="calculator-loan.html" class="tool-card">
-            <div class="tool-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            </div>
-            <h2>Loan Cost Estimator</h2>
-            <p>Compare the true costs of payday loans, personal loans, and credit card debt side by side. See exactly how much you'll repay across different APRs.</p>
-            <span class="tool-card-cta">Open estimator &rarr;</span>
-          </a>
-
+        <div class="score-range-bar"></div>
+        <div class="score-labels">
+          <span>300</span><span>580</span><span>670</span><span>740</span><span>800</span><span>850</span>
         </div>
 
-        <div class="ext-resources">
-          <h2>Free External Resources</h2>
-          <ul>
-            <li><strong>Consumer Financial Protection Bureau (CFPB)</strong> — Free tools and guides for managing credit, debt, and banking. <a href="https://www.consumerfinance.gov" target="_blank" rel="noopener">consumerfinance.gov</a></li>
-            <li><strong>MyMoney.gov</strong> — The U.S. government's official financial literacy portal. <a href="https://www.mymoney.gov" target="_blank" rel="noopener">mymoney.gov</a></li>
-            <li><strong>Khan Academy Personal Finance</strong> — Free courses covering budgeting, taxes, retirement, and more. <a href="https://www.khanacademy.org/college-careers-more/personal-finance" target="_blank" rel="noopener">khanacademy.org</a></li>
-            <li><strong>AnnualCreditReport.com</strong> — Get your free credit reports from all three bureaus once per year. <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener">annualcreditreport.com</a></li>
-          </ul>
-          <div style="margin-top:36px; display:flex; gap:16px; flex-wrap:wrap">
-            <a href="glossary.html" class="btn btn-primary">Browse the glossary</a>
-            <a href="topics.html" class="btn btn-outline-dark">Explore topic guides</a>
+        <div class="score-ranges">
+          <div class="score-range-item range-poor">
+            <div class="range-label">Poor</div>
+            <div class="range-nums">300–579</div>
+          </div>
+          <div class="score-range-item range-fair">
+            <div class="range-label">Fair</div>
+            <div class="range-nums">580–669</div>
+          </div>
+          <div class="score-range-item range-good">
+            <div class="range-label">Good</div>
+            <div class="range-nums">670–739</div>
+          </div>
+          <div class="score-range-item range-vgood">
+            <div class="range-label">Very Good</div>
+            <div class="range-nums">740–799</div>
+          </div>
+          <div class="score-range-item range-except">
+            <div class="range-label">Exceptional</div>
+            <div class="range-nums">800–850</div>
           </div>
         </div>
 
+        <h2 class="section-title">The 5 Factors That Make Up Your Score</h2>
+
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-pct">35%</div>
+            <div class="factor-title">
+              <h3>Payment History</h3>
+              <span>Most important factor</span>
+            </div>
+          </div>
+          <div class="factor-bar-wrap"><div class="factor-bar" style="width:35%; background:#1565c0;"></div></div>
+          <div class="factor-body">
+            <p>Do you pay your bills on time? This is the single biggest factor in your credit score. Even one missed payment can hurt your score significantly, especially if it's reported as 30+ days late.</p>
+            <ul class="factor-tips">
+              <li>Set up autopay for at least the minimum payment on every account</li>
+              <li>Pay bills before the due date, not just by the due date</li>
+              <li>If you miss a payment, catch up as soon as possible — older late payments hurt less over time</li>
+              <li>A collections account (unpaid bill sent to a collector) can severely damage your score</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-pct">30%</div>
+            <div class="factor-title">
+              <h3>Credit Utilization</h3>
+              <span>Amounts owed vs. credit limits</span>
+            </div>
+          </div>
+          <div class="factor-bar-wrap"><div class="factor-bar" style="width:30%; background:#1976d2;"></div></div>
+          <div class="factor-body">
+            <p>This is how much of your available credit you're using. If your credit card limit is $1,000 and you owe $300, your utilization is 30%. Experts recommend keeping utilization below 30%, and ideally under 10% for the best scores.</p>
+            <ul class="factor-tips">
+              <li>Pay down credit card balances to lower utilization</li>
+              <li>Ask for a credit limit increase (if offered) — it lowers utilization without spending more</li>
+              <li>Pay your balance in full each month if possible</li>
+              <li>Spreading debt across multiple cards can help, but don't open unnecessary accounts</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-pct">15%</div>
+            <div class="factor-title">
+              <h3>Length of Credit History</h3>
+              <span>How long your accounts have been open</span>
+            </div>
+          </div>
+          <div class="factor-bar-wrap"><div class="factor-bar" style="width:15%; background:#42a5f5;"></div></div>
+          <div class="factor-body">
+            <p>Older accounts generally help your score. This includes the age of your oldest account, your newest account, and the average age of all accounts.</p>
+            <ul class="factor-tips">
+              <li>Don't close old credit card accounts — even unused ones help your average age</li>
+              <li>If you're new to credit, becoming an authorized user on a parent's older account can help</li>
+              <li>This factor improves naturally over time — be patient</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-pct">10%</div>
+            <div class="factor-title">
+              <h3>Credit Mix</h3>
+              <span>Variety of account types</span>
+            </div>
+          </div>
+          <div class="factor-bar-wrap"><div class="factor-bar" style="width:10%; background:#90caf9;"></div></div>
+          <div class="factor-body">
+            <p>Lenders like to see that you can manage different types of credit responsibly — such as credit cards (revolving credit) and installment loans like a car loan or student loan.</p>
+            <ul class="factor-tips">
+              <li>Don't open new accounts just to improve your mix — it's only 10% of your score</li>
+              <li>If you naturally have a student loan and a credit card, you already have a decent mix</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-pct">10%</div>
+            <div class="factor-title">
+              <h3>New Credit Inquiries</h3>
+              <span>Recent applications for credit</span>
+            </div>
+          </div>
+          <div class="factor-bar-wrap"><div class="factor-bar" style="width:10%; background:#bbdefb;"></div></div>
+          <div class="factor-body">
+            <p>When you apply for new credit (a credit card, loan, or mortgage), the lender does a "hard inquiry" that temporarily lowers your score by a few points. Multiple applications in a short time can add up.</p>
+            <ul class="factor-tips">
+              <li>Only apply for new credit when you actually need it</li>
+              <li>Rate shopping for a single loan (e.g., mortgage or auto loan) within a 14–45 day window counts as one inquiry</li>
+              <li>Checking your own score is a "soft inquiry" and does not affect your score</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout-note">
+          <strong>Check your credit reports for free.</strong> You're entitled to a free credit report from all three bureaus (Equifax, Experian, TransUnion) every year at <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener">AnnualCreditReport.com</a>. Review them for errors — mistakes are surprisingly common and can hurt your score.
+        </div>
+
+        <div class="warning-note">
+          <strong>Be careful of credit repair scams.</strong> Companies that promise to "fix" your credit fast for a fee are almost always scams. Legitimate negative marks stay on your credit report for 7 years. The only legal way to improve your credit is through time and good financial habits.
+        </div>
+
+        <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="topics.html#credit" class="btn btn-primary">Read our full credit guide</a>
+          <a href="calculator-loan.html" class="btn btn-outline-dark">Loan cost estimator</a>
+        </div>
+
       </div>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer">
