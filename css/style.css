@@ -42,6 +42,8 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   padding-top: var(--header-h);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 a { color: var(--blue-link); text-decoration: underline; }
 a:hover { color: var(--blue); }
@@ -1148,10 +1150,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .main-nav { display: none; }
   .hamburger { display: flex; }
   .site-header.nav-open { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; }
+
+  /* Center logo in mobile header; icons stay on the right */
+  .header-inner {
+    position: relative;
+    gap: 0;
+    justify-content: flex-end;
+  }
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .header-actions { margin-left: 0; }
+
   .main-nav.open { display: block; position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0; background: var(--white); overflow-y: auto; padding: 0; z-index: 1000; }
   .main-nav.open .nav-list { flex-direction: column; align-items: stretch; }
   .main-nav.open .nav-list > .nav-item { border-bottom: 1px solid var(--gray-200); }
-  .main-nav.open .nav-link { font-size: 20px; padding: 20px 24px; border-radius: 0; width: 100%; border-bottom: none; justify-content: space-between; gap: 16px; }
+  .main-nav.open .nav-link { font-family: var(--font-sans); font-size: 20px; padding: 20px 24px; border-radius: 0; width: 100%; border-bottom: none; justify-content: space-between; gap: 16px; }
+  .main-nav.open .dropdown-links-col a { font-family: var(--font-sans); }
   .main-nav.open .has-dropdown > .nav-link::after {
     content: '';
     display: block;
