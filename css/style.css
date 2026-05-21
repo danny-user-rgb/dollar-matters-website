@@ -1012,8 +1012,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .footer-lang-option:hover { background: #f0f4f8; }
 .footer-lang-option.active { font-weight: 700; }
 
-/* Footer accordion chevron: hidden on desktop */
-.footer-acc-chevron { display: none; }
 
 /* =========================================
    GLOSSARY PAGE
