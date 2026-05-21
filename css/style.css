@@ -1143,6 +1143,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     transform: none;
     left: auto;
   }
+  .logo-img {
+    width: 200px;
+    height: auto;
+  }
   .header-actions {
     margin-left: 0;
   }
