@@ -810,34 +810,222 @@ if (glossaryPageSearch) {
   });
 })();
 
-// ---- Language selector ----
+// ---- Language selector & translations ----
+const PAGE_TRANSLATIONS = {
+  es: {
+    // Navbar
+    'What We Do': 'Qué Hacemos',
+    'Financial Library': 'Biblioteca Financiera',
+    'For Schools & Partners': 'Para Escuelas y Socios',
+    'About': 'Acerca de',
+    'Get Involved': 'Participa',
+    'Get involved': 'Participa',
+    // Dropdown - What We Do
+    'Our Programs': 'Nuestros Programas',
+    'Financial Topics We Teach': 'Temas Financieros que Enseñamos',
+    'Volunteer with Us': 'Voluntariado con Nosotros',
+    'Our Impact': 'Nuestro Impacto',
+    'Empowering the next generation': 'Empoderando a la próxima generación',
+    "From high school workshops to community sessions in Miami and the surrounding area, Dollar Matters brings peer-led financial education where it's needed most.": 'Desde talleres en secundaria hasta sesiones comunitarias en Miami y sus alrededores, Dollar Matters lleva educación financiera entre pares donde más se necesita.',
+    'Volunteer today →': 'Voluntariado hoy →',
+    // Dropdown - Financial Library
+    'Finance Glossary A–Z': 'Glosario Financiero A–Z',
+    'Topic Guides': 'Guías por Tema',
+    'Tools & Calculators': 'Herramientas y Calculadoras',
+    'Free Resources': 'Recursos Gratuitos',
+    'Your financial knowledge hub': 'Tu centro de conocimiento financiero',
+    'Access our growing library of guides, glossaries, and tools, all free, all designed for real-world use.': 'Accede a nuestra creciente biblioteca de guías, glosarios y herramientas, todas gratuitas, todas diseñadas para uso en el mundo real.',
+    'Browse the glossary →': 'Explorar el glosario →',
+    // Dropdown - For Schools & Partners
+    'Bring Us to Your School': 'Llévanos a Tu Escuela',
+    'Community Centers': 'Centros Comunitarios',
+    'Partner With Us': 'Asóciate con Nosotros',
+    'We come to you, free & fully prepared': 'Vamos a donde tú estás, gratis y completamente preparados',
+    'Our trained volunteers bring workshops directly to your school or community center at no cost to you.': 'Nuestros voluntarios capacitados llevan talleres directamente a tu escuela o centro comunitario sin ningún costo para ti.',
+    'Request a workshop →': 'Solicitar un taller →',
+    // Dropdown - About
+    'About Dollar Matters': 'Acerca de Dollar Matters',
+    'Our Team': 'Nuestro Equipo',
+    'Contact Us': 'Contáctenos',
+    'Our Story': 'Nuestra Historia',
+    'Student-led, community-driven': 'Liderado por estudiantes, impulsado por la comunidad',
+    'Dollar Matters was founded by students who believe financial literacy is a right, not a privilege. Based in Miami, FL, we serve the greater South Florida area. Learn what drives us.': 'Dollar Matters fue fundado por estudiantes que creen que la educación financiera es un derecho, no un privilegio. Con sede en Miami, FL, servimos al área metropolitana del sur de Florida. Conoce lo que nos motiva.',
+    'Our story →': 'Nuestra historia →',
+    // Hero
+    'Financial Literacy': 'Educación Financiera',
+    'for Everyone.': 'para Todos.',
+    'Learn how we make an impact →': 'Aprende cómo generamos impacto →',
+    // Glossary finder
+    'Find financial terms by first letter': 'Encuentra términos financieros por letra',
+    'Search financial terms': 'Buscar términos financieros',
+    // Value prop
+    'Knowledge starts here.': 'El conocimiento comienza aquí.',
+    'The right answers, the first time': 'Las respuestas correctas, desde el principio',
+    'Financial mistakes can follow you for decades. Our trained student volunteers make sure young people understand money before they make the decisions that count.': 'Los errores financieros pueden seguirte durante décadas. Nuestros voluntarios estudiantes capacitados se aseguran de que los jóvenes entiendan el dinero antes de tomar las decisiones importantes.',
+    'Free for every student': 'Gratis para todos los estudiantes',
+    'Dollar Matters is 100% free for schools and community centers. We believe zip code should never determine financial know-how.': 'Dollar Matters es 100% gratuito para escuelas y centros comunitarios. Creemos que el código postal nunca debe determinar el conocimiento financiero.',
+    'Bring us to your school.': 'Llévanos a tu escuela.',
+    'Students teaching students': 'Estudiantes enseñando a estudiantes',
+    'Peer-to-peer learning works. Our trained volunteers, including high schoolers and college students alike, speak the same language as the students we teach, and our results show it.': 'El aprendizaje entre pares funciona. Nuestros voluntarios capacitados, tanto de secundaria como universitarios, hablan el mismo idioma que los estudiantes que enseñamos, y nuestros resultados lo demuestran.',
+    'See our impact.': 'Ver nuestro impacto.',
+    'Why Dollar Matters': 'Por qué Dollar Matters',
+    // Stats
+    'Students reached': 'Estudiantes alcanzados',
+    'Schools & community centers': 'Escuelas y centros comunitarios',
+    'Trained volunteers': 'Voluntarios capacitados',
+    'Free for all participants': 'Gratis para todos los participantes',
+    // Topics
+    "From budgeting basics to predatory lending, we cover what schools often don't.": 'Desde los fundamentos del presupuesto hasta los préstamos abusivos, cubrimos lo que las escuelas a menudo no enseñan.',
+    'Topics we teach': 'Temas que enseñamos',
+    'Saving': 'Ahorro',
+    'Emergency funds, high-yield accounts, and building the habit of saving first.': 'Fondos de emergencia, cuentas de alto rendimiento y el hábito de ahorrar primero.',
+    'Budgeting': 'Presupuesto',
+    'The 50/30/20 rule, tracking spending, and making a plan that actually works.': 'La regla 50/30/20, el seguimiento de gastos y un plan que realmente funcione.',
+    'Interest & Investing': 'Interés e Inversiones',
+    'Compound interest, APR vs APY, and why starting early changes everything.': 'Interés compuesto, APR vs APY, y por qué empezar temprano cambia todo.',
+    'Credit & Credit Scores': 'Crédito y Puntaje de Crédito',
+    'What makes up your score, how to build credit responsibly, and what to avoid.': 'Qué compone tu puntaje, cómo construir crédito responsablemente y qué evitar.',
+    'Predatory Lending': 'Préstamos Abusivos',
+    'Payday loans, rent-to-own traps, and how to spot & avoid financial predators.': 'Préstamos de día de pago, trampas de alquiler con opción a compra y cómo detectar y evitar a los depredadores financieros.',
+    'Taxes & Filing': 'Impuestos y Declaración',
+    'W-2s, W-4s, deductions, and how to file your first return with confidence.': 'W-2, W-4, deducciones y cómo presentar tu primera declaración con confianza.',
+    'View all topics': 'Ver todos los temas',
+    // Footer CTAs
+    'Volunteer with us': 'Voluntariado con nosotros',
+    'Bring us to your school': 'Llévanos a tu escuela',
+    'Contact us': 'Contáctenos',
+    // Footer nav links
+    'About Us': 'Sobre Nosotros',
+    'Partners': 'Socios',
+    'High School Workshops': 'Talleres para Secundaria',
+    'Community Center Sessions': 'Sesiones en Centros Comunitarios',
+    'Virtual Learning': 'Aprendizaje Virtual',
+    'Apply to Volunteer': 'Solicitar ser Voluntario',
+    'Training & Resources': 'Capacitación y Recursos',
+    'Volunteer FAQ': 'Preguntas Frecuentes',
+    'Taxes': 'Impuestos',
+    'Finance Glossary': 'Glosario Financiero',
+    'Budget Calculator': 'Calculadora de Presupuesto',
+    'Compound Interest Calculator': 'Calculadora de Interés Compuesto',
+    'Credit Score Guide': 'Guía de Puntaje de Crédito',
+    'Loan Cost Estimator': 'Estimador de Costo de Préstamo',
+    // Footer group titles (include the › character rendered from &rsaquo;)
+    'About Dollar Matters ›': 'Acerca de Dollar Matters ›',
+    'Programs ›': 'Programas ›',
+    'Volunteers ›': 'Voluntarios ›',
+    'Financial Topics ›': 'Temas Financieros ›',
+    'Resources ›': 'Recursos ›',
+    // Footer social / newsletter
+    'Follow Dollar Matters': 'Sigue a Dollar Matters',
+    'Stay informed': 'Manténte informado',
+    'Subscribe': 'Suscribirse',
+    // Footer bottom
+    'Privacy Policy': 'Política de Privacidad',
+    'Terms of Use': 'Términos de Uso',
+    'Accessibility': 'Accesibilidad',
+    'Contact': 'Contacto',
+    '© 2026 Dollar Matters. A student-led nonprofit. All rights reserved.': '© 2026 Dollar Matters. Una organización sin fines de lucro liderada por estudiantes. Todos los derechos reservados.',
+    'Language:': 'Idioma:',
+  }
+};
+
+let _langState = { lang: 'en', origNodes: null, origAttrs: null };
+
+function applyTranslations(lang) {
+  if (lang === _langState.lang) return;
+
+  if (_langState.origNodes) {
+    _langState.origNodes.forEach(function(o) { o.node.nodeValue = o.value; });
+  }
+  if (_langState.origAttrs) {
+    _langState.origAttrs.forEach(function(o) { o.el[o.attr] = o.value; });
+  }
+
+  if (lang === 'en' || !PAGE_TRANSLATIONS[lang]) {
+    _langState = { lang: 'en', origNodes: null, origAttrs: null };
+    document.documentElement.lang = 'en';
+    return;
+  }
+
+  const strings = PAGE_TRANSLATIONS[lang];
+  const origNodes = [];
+  const origAttrs = [];
+
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode: function(n) {
+        const p = n.parentElement;
+        return (p && (p.tagName === 'SCRIPT' || p.tagName === 'STYLE'))
+          ? NodeFilter.FILTER_REJECT
+          : NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+
+  let node;
+  while ((node = walker.nextNode())) {
+    const orig = node.nodeValue;
+    const trimmed = orig.trim();
+    if (trimmed && Object.prototype.hasOwnProperty.call(strings, trimmed)) {
+      origNodes.push({ node: node, value: orig });
+      const i = orig.indexOf(trimmed);
+      node.nodeValue = orig.slice(0, i) + strings[trimmed] + orig.slice(i + trimmed.length);
+    }
+  }
+
+  const placeholderMap = {
+    '#search-overlay-input': 'Buscar por palabra clave o frase',
+    '#glossary-search': 'Buscar',
+    '.footer-newsletter-form input[type="email"]': 'Tu dirección de correo electrónico'
+  };
+  Object.keys(placeholderMap).forEach(function(sel) {
+    document.querySelectorAll(sel).forEach(function(el) {
+      origAttrs.push({ el: el, attr: 'placeholder', value: el.placeholder });
+      el.placeholder = placeholderMap[sel];
+    });
+  });
+
+  _langState = { lang: lang, origNodes: origNodes, origAttrs: origAttrs };
+  document.documentElement.lang = lang;
+}
+
 (function () {
   const wrap = document.getElementById('footer-lang-wrap');
   const btn = document.getElementById('footer-lang-btn');
   const text = document.getElementById('footer-lang-text');
-  if (!wrap || !btn) return;
+  if (!wrap || !btn || !text) return;
 
-  btn.addEventListener('click', e => {
+  function setLang(lang) {
+    applyTranslations(lang);
+    localStorage.setItem('site-lang', lang);
+    const opt = wrap.querySelector('.footer-lang-option[data-lang="' + lang + '"]');
+    if (opt) text.textContent = opt.textContent;
+    wrap.querySelectorAll('.footer-lang-option').forEach(function(o) {
+      o.classList.toggle('active', o.dataset.lang === lang);
+    });
+    wrap.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', function(e) {
     e.stopPropagation();
     const isOpen = wrap.classList.toggle('open');
-    btn.setAttribute('aria-expanded', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
   });
 
-  wrap.querySelectorAll('.footer-lang-option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      wrap.querySelectorAll('.footer-lang-option').forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-      text.textContent = opt.textContent;
-      wrap.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.documentElement.lang = opt.dataset.lang;
-    });
+  wrap.querySelectorAll('.footer-lang-option').forEach(function(opt) {
+    opt.addEventListener('click', function() { setLang(opt.dataset.lang); });
   });
 
-  document.addEventListener('click', e => {
+  document.addEventListener('click', function(e) {
     if (!wrap.contains(e.target)) {
       wrap.classList.remove('open');
       btn.setAttribute('aria-expanded', 'false');
     }
   });
+
+  const saved = localStorage.getItem('site-lang');
+  if (saved && saved !== 'en') setLang(saved);
 })();

@@ -61,6 +61,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .site-header {
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   background: var(--white);
   border-bottom: 1px solid var(--gray-200);
