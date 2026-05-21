@@ -795,3 +795,54 @@ if (glossaryPageSearch) {
     });
   });
 }
+
+// ---- Footer accordion (mobile) ----
+(function () {
+  const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
+  document.querySelectorAll('.footer-col .footer-group-title').forEach(title => {
+    const chevron = document.createElement('span');
+    chevron.className = 'footer-acc-chevron';
+    title.appendChild(chevron);
+    title.addEventListener('click', e => {
+      if (!isMobile()) return;
+      e.preventDefault();
+      const ul = title.nextElementSibling;
+      if (ul && ul.tagName === 'UL') {
+        ul.classList.toggle('footer-open');
+        title.classList.toggle('footer-open');
+      }
+    });
+  });
+})();
+
+// ---- Language selector ----
+(function () {
+  const wrap = document.getElementById('footer-lang-wrap');
+  const btn = document.getElementById('footer-lang-btn');
+  const text = document.getElementById('footer-lang-text');
+  if (!wrap || !btn) return;
+
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const isOpen = wrap.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+
+  wrap.querySelectorAll('.footer-lang-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      wrap.querySelectorAll('.footer-lang-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      text.textContent = opt.textContent;
+      wrap.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.documentElement.lang = opt.dataset.lang;
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!wrap.contains(e.target)) {
+      wrap.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
