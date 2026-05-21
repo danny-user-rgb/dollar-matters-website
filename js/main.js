@@ -543,20 +543,15 @@ if (searchOverlayInput && searchClearBtn) {
   });
 }
 
-const searchSubmitBtn = document.querySelector('.search-submit-btn');
-if (searchSubmitBtn && searchOverlayInput) {
-  searchSubmitBtn.addEventListener('click', () => {
-    runOverlaySearch(searchOverlayInput.value);
-  });
-}
-
 // ---- Mobile hamburger + quick-link tiles ----
 const hamburger = document.getElementById('hamburger');
 const mainNav = document.getElementById('main-nav');
+const siteHeader = document.getElementById('site-header');
 if (hamburger && mainNav) {
   hamburger.addEventListener('click', () => {
     mainNav.classList.toggle('open');
     hamburger.classList.toggle('open');
+    if (siteHeader) siteHeader.classList.toggle('nav-open');
 
     // Inject quick-link tiles on first open
     if (mainNav.classList.contains('open') && !document.getElementById('mobile-quick-links')) {
