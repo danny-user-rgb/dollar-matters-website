@@ -326,7 +326,7 @@ const TERMS = [
   // S
   { term: 'Savings Bond', def: 'A low-risk, government-issued bond that earns interest over time and is backed by the full faith and credit of the U.S. government.', letter: 'S' },
   { term: 'Secured Credit Card', def: 'A credit card backed by a cash deposit that serves as your credit limit, designed to help build or rebuild credit history.', letter: 'S' },
-  { term: 'Secured Loan', def: 'A loan backed by collateral — an asset the lender can seize if you fail to repay.', letter: 'S' },
+  { term: 'Secured Loan', def: 'A loan backed by collateral: an asset the lender can seize if you fail to repay.', letter: 'S' },
   { term: 'Self-Employment Tax', def: 'Social Security and Medicare taxes paid entirely by self-employed individuals, equivalent to the combined employer and employee portions.', letter: 'S' },
   { term: 'SEP IRA', def: 'A Simplified Employee Pension IRA designed for self-employed individuals and small business owners, allowing higher contribution limits than a traditional IRA.', letter: 'S' },
   { term: 'Social Security', def: 'A federal government program providing retirement, disability, and survivor benefits funded through payroll taxes.', letter: 'S' },
@@ -344,7 +344,7 @@ const TERMS = [
   { term: 'Taxable Income', def: 'The portion of your gross income subject to tax after all eligible deductions and exemptions have been subtracted.', letter: 'T' },
   { term: 'Tax Credit', def: 'A dollar-for-dollar reduction in the amount of tax you owe, more valuable than a deduction of the same amount.', letter: 'T' },
   { term: 'Tax Exempt', def: 'Income, an organization, or a transaction that is not subject to taxation under applicable federal or state law.', letter: 'T' },
-  { term: 'Tax Filing Status', def: 'A category chosen when filing taxes — such as single, married filing jointly, or head of household — that affects your rates and deductions.', letter: 'T' },
+  { term: 'Tax Filing Status', def: 'A category chosen when filing taxes, such as single, married filing jointly, or head of household, that affects your rates and deductions.', letter: 'T' },
   { term: 'Tax-Loss Harvesting', def: 'The strategy of selling investments that have declined in value to offset capital gains and reduce your overall tax bill.', letter: 'T' },
   { term: 'Tax Refund', def: 'Money returned to you by the IRS when you have overpaid taxes throughout the year through withholding or estimated payments.', letter: 'T' },
   { term: 'Tax Return', def: 'The official form submitted to the IRS each year reporting your income, deductions, credits, and the amount of tax owed or refunded.', letter: 'T' },

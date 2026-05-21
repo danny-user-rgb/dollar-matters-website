@@ -171,7 +171,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>Loan Cost Estimator</h1>
-        <p>See the true cost of borrowing — and how much loan type and APR really matter.</p>
+        <p>See the true cost of borrowing and how much loan type and APR really matter.</p>
       </div>
     </section>
 
@@ -434,7 +434,7 @@
       const interestPct = (res.interest / amount * 100).toFixed(1);
       document.getElementById('r-interest-pct').textContent = interestPct + '%';
 
-      // Compare cards — fixed 12-month term for comparison
+      // Compare cards: fixed 12-month term for comparison
       const cmpTerm = Math.max(term, 1);
       document.getElementById('compare-amount-label').textContent = amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
