@@ -791,24 +791,6 @@ if (glossaryPageSearch) {
   });
 }
 
-// ---- Footer accordion (mobile) ----
-(function () {
-  const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
-  document.querySelectorAll('.footer-col .footer-group-title').forEach(title => {
-    const chevron = document.createElement('span');
-    chevron.className = 'footer-acc-chevron';
-    title.appendChild(chevron);
-    title.addEventListener('click', e => {
-      if (!isMobile()) return;
-      e.preventDefault();
-      const ul = title.nextElementSibling;
-      if (ul && ul.tagName === 'UL') {
-        ul.classList.toggle('footer-open');
-        title.classList.toggle('footer-open');
-      }
-    });
-  });
-})();
 
 // ---- Language selector & translations ----
 const PAGE_TRANSLATIONS = {
@@ -910,6 +892,7 @@ const PAGE_TRANSLATIONS = {
     'Credit Score Guide': 'Guía de Puntaje de Crédito',
     'Loan Cost Estimator': 'Estimador de Costo de Préstamo',
     // Footer group titles (include the › character rendered from &rsaquo;)
+    'Get Involved': 'Participa',
     'About Dollar Matters ›': 'Acerca de Dollar Matters ›',
     'Programs ›': 'Programas ›',
     'Volunteers ›': 'Voluntarios ›',
@@ -924,6 +907,7 @@ const PAGE_TRANSLATIONS = {
     'Terms of Use': 'Términos de Uso',
     'Accessibility': 'Accesibilidad',
     'Contact': 'Contacto',
+    'Sitemap': 'Mapa del sitio',
     '© 2026 Dollar Matters. A student-led nonprofit. All rights reserved.': '© 2026 Dollar Matters. Una organización sin fines de lucro liderada por estudiantes. Todos los derechos reservados.',
     'Language:': 'Idioma:',
   }
