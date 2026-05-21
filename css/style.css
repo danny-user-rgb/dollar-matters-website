@@ -562,7 +562,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--gray-400);
   pointer-events: none;
 }
-#glossary-search {
+#glossary-search,
+#glossary-page-search {
   width: 100%;
   padding: 14px 20px 14px 46px;
   font-size: 15px;
@@ -572,7 +573,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-family: var(--font-sans);
   transition: border-color var(--transition);
 }
-#glossary-search:focus { border-color: var(--blue); }
+#glossary-search:focus,
+#glossary-page-search:focus { border-color: var(--blue); }
 
 .search-suggestions {
   margin-top: 8px;
