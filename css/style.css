@@ -1120,11 +1120,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    RESPONSIVE
    ========================================= */
 @media (max-width: 900px) {
-  /* Override serif font with Inter for all mobile typography */
-  :root {
-    --font-serif: 'Inter', system-ui, sans-serif;
-  }
-
   .main-nav { display: none; }
   .hamburger { display: flex; }
   .site-header.nav-open { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; }
@@ -1239,6 +1234,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 600px) {
   .topics-grid { grid-template-columns: 1fr; }
   .hero { height: 70vh; }
-  .footer-links-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .footer-links-inner { grid-template-columns: 1fr; gap: 28px; }
+  .footer-col { width: 100%; }
   .footer-legal-links { justify-content: flex-start; }
 }
