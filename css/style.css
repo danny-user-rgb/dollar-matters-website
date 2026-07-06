@@ -822,7 +822,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .footer-col {}
 
 .footer-group-title {
-  font-family: var(--font-serif);
   font-size: 14px;
   font-weight: 700;
   color: var(--white);
