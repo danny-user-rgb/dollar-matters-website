@@ -857,6 +857,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-wrap: wrap;
 }
 .footer-follow {
+  font-family: var(--font-serif);
   font-size: 14px;
   font-weight: 700;
   color: var(--white);
